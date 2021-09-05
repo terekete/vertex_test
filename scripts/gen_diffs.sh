@@ -59,8 +59,11 @@ do
     fi
 done
 
+
 printf "${DIFF_TEAM}" | sort | uniq > DIFF_TEAM.txt
 printf "${DIFF_LIST}" | sort | uniq > DIFF_LIST.txt
 
+
 printf "\nDIFF_LIST:\n"
 cat DIFF_LIST.txt
+cat DIFF_TEAM.txt

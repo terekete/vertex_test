@@ -2,22 +2,42 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'get-key'
     entrypoint: 'bash'
-    dir:
+    dir: .
     args:
-      - '-c'
-      - |
-        gcloud secrets versions access latest --secret="github" --project="vertex-325021" > /root/.ssh/id_rsa
+    - '-c'
+    - |
+      gcloud secrets versions access latest --secret="github" --project="vertex-325021" > /root/.ssh/id_rsa
     volumes:
-      - name: 'ssh'
-        path: /root/.ssh
+    - name: 'ssh'
+      path: /root/.ssh
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'add-key'
+    entrypoint: 'bash'
+    dir: .
+    args:
+    - '-c'
+    - |
+      chmod 600 /root/.ssh/id_rsa
+      cat <<EOF >/root/.ssh/config
+      Hostname github.com
+      IdentityFile /root/.ssh/id_rsa
+      EOF
+      ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
 
-    
+
 options:
-  subscription_options: 'ALLOW_LOOSE'
-
+  substitution_option: 'ALLOW_LOOSE'
 
 substitutions:
+  _KEY_VERISON: "latest"
+  _KEY_PROJECT: "vertex-325021"
   _BASE_BRANCH: "main"
-
+  _ENV: "np"
+  _CUSTOM_TAG: ""
+  _SNAPSHOT_ARTIFACTS_BUCKET: ""
 
 timeout: 10000s
+

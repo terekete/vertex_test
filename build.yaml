@@ -17,11 +17,7 @@ steps:
 
 
 substitutions:
-  _KEY_VERSION: "latest"
-  _KEY_PROJECT: "vertex-325021"
   _BASE_BRANCH: "main"
-  _ENV: "np"
-  _CUSTOM_TAG: ""
-  _SNAPSHOT_ARTIFACTS_BUCKET: ""
+
 
 timeout: 10000s

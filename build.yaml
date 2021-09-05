@@ -26,6 +26,27 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'crlf'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      git config --global core.autocrlf input
+      git reset --hard
+      git clean -fdx
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'gen-diffs'
+    entrypoint: 'bash'
+    args: [
+      '/workspace/scripts/gen_diffs.sh'
+    ]
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
 
 
 options:

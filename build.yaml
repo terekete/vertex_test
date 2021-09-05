@@ -1,0 +1,25 @@
+step:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'get-key'
+    entrypoint: 'bash'
+    dir:
+    args:
+      - '-c'
+      - |
+      gcloud secrets versions access latest --secret="github" --project="vertex-325021" > /root/.ssh/id_rsa
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+
+options:
+  subscription_options: 'ALLOW_LOOSE'
+
+substitutions:
+  _key_version: "latest"
+  _key_project: "vertex-325021"
+  _base_branch: "main"
+  _env: "np"
+  _custom_tag: ""
+  _snapshot_artifacts_bucket: ""
+
+timeout: 10000s

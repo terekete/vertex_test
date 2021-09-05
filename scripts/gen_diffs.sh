@@ -12,11 +12,13 @@ if [[ ! -z "${PR_NUMBER}" ]]; then
     printf "pull request: #${PR_NUMBER}"
 fi
 
+
 git config user.email "<>"
 git config user.name "git"
 git remote | xargs -n1 git remote remove
 git remote add origin ${BASE_REPO_URL}
 git remote -vv
+
 
 {
     git branch -D base-branch

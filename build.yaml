@@ -47,6 +47,11 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
+    env: [
+      'BASE_REPO_URL=git@github.com:terekete/vertex_test.git',
+      'BASE_BRANCH=${_BASE_BRANCH}',
+      'PR_NUMBER=${_PR_NUMBER}',
+    ]
 
 
 options:

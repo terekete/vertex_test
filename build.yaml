@@ -11,8 +11,8 @@ steps:
       - name: 'ssh'
         path: /root/.ssh
 
-options:
-  subscription_options: 'ALLOW_LOOSE'
+# options:
+#   subscription_options: 'ALLOW_LOOSE'
 
 substitutions:
   _key_version: "latest"

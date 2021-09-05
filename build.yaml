@@ -40,4 +40,3 @@ substitutions:
   _SNAPSHOT_ARTIFACTS_BUCKET: ""
 
 timeout: 10000s
-

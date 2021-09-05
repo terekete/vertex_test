@@ -15,6 +15,7 @@ steps:
 options:
   subscription_options: 'ALLOW_LOOSE'
 
+
 substitutions:
   _key_version: "latest"
   _key_project: "vertex-325021"

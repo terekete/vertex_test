@@ -6,7 +6,7 @@ steps:
     args:
       - '-c'
       - |
-      gcloud secrets versions access latest --secret="github" --project="vertex-325021" > /root/.ssh/id_rsa
+        gcloud secrets versions access latest --secret="github" --project="vertex-325021" > /root/.ssh/id_rsa
     volumes:
       - name: 'ssh'
         path: /root/.ssh

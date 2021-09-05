@@ -53,11 +53,11 @@ options:
   substitution_option: 'ALLOW_LOOSE'
 
 substitutions:
-  _KEY_VERISON: "latest"
-  _KEY_PROJECT: "vertex-325021"
-  _BASE_BRANCH: "main"
-  _ENV: "np"
-  _CUSTOM_TAG: ""
-  _SNAPSHOT_ARTIFACTS_BUCKET: ""
+  _key_version: "latest"
+  _key_project: "vertex-325021"
+  _base_branch: "main"
+  _env: "np"
+  _custom_tag: ""
+  _snapshot_artifacts_bucket: ""
 
 timeout: 10000s

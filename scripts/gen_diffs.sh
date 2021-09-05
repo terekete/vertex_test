@@ -7,15 +7,15 @@ git rev-parse --short HEAD >> short_commit.txt
 commit=$(cat commit.txt)
 
 printf "commit: ${commit}"
-printf "base: ${base_branch}"
-if [[ ! -z "${pr_number}" ]]; then
-    printf "pull request: #${pr_number}"
+printf "base: ${BASE_BRANCH}"
+if [[ ! -z "${PR_NUMBER}" ]]; then
+    printf "pull request: #${PR_NUMBER}"
 fi
 
 git config user.email "<>"
 git config user.name "git"
 git remote | xargs -n1 git remote remove
-git remote add origin ${base_repo_url}
+git remote add origin ${BASE_REPO_URL}
 git remote -vv
 
 {
@@ -29,14 +29,14 @@ git remote -vv
     printf "\n"
 }
 
-if [[ ! -z "${pr_number}" ]]; then
-    git fetch origin "pull/${pr_number}/head":feature
+if [[ ! -z "${PR_NUMBER}" ]]; then
+    git fetch origin "pull/${PR_NUMBER}/head":feature
     git fetch --unshallow
 else
     git branch -m feature
 fi
 
-git fetch origin "${base_branch}":base-branch
+git fetch origin "${BASE_BRANCH}":base-branch
 git checkout base-branch
 git diff --name-only feature...base-branch > POTENTIAL_CONFLICT.txt
 git merge --no-ff feature
@@ -44,7 +44,7 @@ git status
 
 
 #! /bin/bash
-DIFF=$(git diff --name-only origin/"${base_branch}"...HEAD)
+DIFF=$(git diff --name-only origin/"${BASE_BRANCH}"...HEAD)
 DIFF_TEAM=""
 DIFF_LIST=""
 
